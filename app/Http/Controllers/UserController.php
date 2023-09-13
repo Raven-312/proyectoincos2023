@@ -16,7 +16,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $data['list'] = User::select('id AS ID','ci AS CI','nombre AS nombres','apellido AS apellidos','telefono AS contacto','email AS correo','tipo AS tipo','foto AS foto','login AS nomUsu','estado AS estado')
+        $data['list'] = User::select('id AS ID','ci AS ci','nombre AS nombre','apellido AS apellidos','telefono AS contacto','email AS correo','tipo AS tipo','foto AS foto','login AS nomUsu','estado AS estado')
             ->where('id','!=',session('idSession'))
             ->get();
         return view('users.list_users',$data);
