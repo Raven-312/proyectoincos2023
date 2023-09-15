@@ -53,7 +53,7 @@
                 </div>
                 <div class="chat-item chat-item-right">
                     <div class="chat-message">
-                        Good luck with your sales!
+                       Buena suerte con tus ventas
                     </div>
                 </div>
             </div>
