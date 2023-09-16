@@ -1,89 +1,100 @@
-@extends('general.main')
-
+@@extends('general.main')
 @section('body')
 <!-- Aqui esta todo el contenido de la pagina -->
-<div class="page-wrapper">
-    <div class="page-content">
-        <div class="row">
-            <div class="col-md-6"> <h3>Actualizar Datos</h3> </div>
-            <div class="col-md-6 text-end">
-                <a href="{{ route('user.index') }}" class="btn btn-dark"><i class="fas fa-users"></i> Ver Usuarios</a>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-xl-8 mx-auto">
-                <div class="card border-top border-0 border-4 border-dark"> <!-- Tarjeta -->
-                    <div class="card-header py-3"> <!-- Cabecera de la tarjeta -->
-                        <h5>Aqui podra modificar sus datos en la cuenta</h5>
+<div class="page-inner">
+                <div class="page-breadcrumb">
+                    <ol class="breadcrumb container">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">Actualizar</a></li>
+                    </ol>
+                </div>
+                <div class="page-title">
+                    <div class="container">
+                        <h3>Actualizar mis datos</h3>
                     </div>
-                    <div class="card-body py-3 px-5"> <!-- Cuerpo de la tarjeta -->
-                        <form id="formUser" action="{{ route('user.update',$user->ID) }}" method="POST" enctype="multipart/form-data">
-                        @csrf
+                </div>
+                <div id="main-wrapper" class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-white">
+                                <div class="panel-heading clearfix">
+                                    <h4 class="panel-title">Aqui podra modificar sus datos en la cuenta</h4>
+                                </div>
+                                <div class="panel-body">
+                                <form id="formUser" action="{{ route('user.update',$user->id) }}" method="POST" enctype="multipart/form-data">
+                                @csrf
                         {{ method_field('PATCH') }}
-                            <div>   
-                                <h5><i class="fas fa-address-card"></i> Datos Personales:</h5>
+                        <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="nombres">Nombres:</label>
+                                            <input type="text" class="form-control" placeholder="Nombres" name="nombre" value="{{ $user->nombre }}">
+                                            @error('nombre')
+										<div class="alert alert-danger border-0 py-0 bg-danger">
+											<div class="text-white">{{ $message }}</div>
+										</div>
+                                        @enderror
+                                        </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="apellidos">Apellido Paterno</label>
+                                            <input type="text" class="form-control" placeholder="Apellido" name="apellido" value="{{ $user->apellido }}">
+                                            @error('apellido')
+										<div class="alert alert-danger border-0 py-0 bg-danger">
+											<div class="text-white">{{ $message }}</div>
+										</div>
+                                        @enderror
+                                        </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="apellidos">Apellido Materno</label>
+                                            <input type="text" class="form-control" placeholder="Apellido" name="apellido2" value="{{ $user->apellido2 }}">
+                                          
+                                        </div>
+                                        </div>
+                                        <br>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <h6>Nombres:</h6>
-                                        <input type="text" class="form-control" name="name" value="{{ $user->nombres }}">
-                                        @error('name')
+                                <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="ci">Documento de identidad:</label>
+                                            <input type="text" class="form-control" name="ci" value="{{ $user->ci }}" readonly>
+                                            @error('ci')
 										<div class="alert alert-danger border-0 py-0 bg-danger">
 											<div class="text-white">{{ $message }}</div>
 										</div>
                                         @enderror
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6>Apellidos:</h6>
-                                        <input type="text" class="form-control" name="lastname" value="{{ $user->apellidos }}">
-                                        @error('lastname')
+                                        </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="telefono">Numero de Contacto:</label>
+                                            <input type="text" class="form-control" name="telefono" value="{{ $user->telefono }}">
+                                            @error('telefono')
 										<div class="alert alert-danger border-0 py-0 bg-danger">
 											<div class="text-white">{{ $message }}</div>
 										</div>
                                         @enderror
-                                    </div>
-                                </div>
-                                <br>
+                                        </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="correo">Correo electrónico:</label>
+                                            <input type="email" class="form-control" name="email" value="{{ $user->email }}" require="false">
+                                            @error('email')
+										<div class="alert alert-danger border-0 py-0 bg-danger">
+											<div class="text-white">{{ $message }}</div>
+										</div>
+                                        @enderror
+                                        </div>
+                                        </div>
+                                        <br>
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <h6>Documento de Identidad:</h6>
-                                        <input type="text" class="form-control" name="ci" value="{{ $user->CI }}" readonly>
-                                        @error('ci')
-										<div class="alert alert-danger border-0 py-0 bg-danger">
-											<div class="text-white">{{ $message }}</div>
-										</div>
-                                        @enderror
-                                    </div>
-                                    <div class="col-md-4">
-                                        <h6>Número de contacto:</h6>
-                                        <input type="text" class="form-control" name="phone" value="{{ $user->contacto }}">
-                                        @error('phone')
-										<div class="alert alert-danger border-0 py-0 bg-danger">
-											<div class="text-white">{{ $message }}</div>
-										</div>
-                                        @enderror
-                                    </div>
-                                    <div class="col-md-4">
-                                        <h6>Correo electrónico:</h6>
-                                        <input type="email" class="form-control" name="email" value="{{ $user->correo }}" require="false">
-                                        @error('email')
-										<div class="alert alert-danger border-0 py-0 bg-danger">
-											<div class="text-white">{{ $message }}</div>
-										</div>
-                                        @enderror
-                                        <small>*Opcional</small>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <h6>Foto Actual:</h6>
-                                        <img src="{{ asset('storage/'.$user->foto) }}" width="80" height="80" >
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6>Foto de perfil:</h6>
-                                        <input type="file" class="form-control form-control-sm" name="photo" accept=".jpg, .png, .jpeg">
-                                        @error('photo')
+                                <div class="col-md-2">
+                                <div class="form-group">
+                                            <label for="foto">Foto de perfil:</label>
+                                            <input type="file" class="form-control form-control-sm" name="foto" accept=".jpg, .png, .jpeg">
+                                            @error('photo')
 										<div class="alert alert-danger border-0 py-0 bg-danger">
 											<div class="text-white">{{ $message }}</div>
 										</div>
@@ -93,64 +104,45 @@
                                         <small>Archivos permitidos: (JPG, JPEG ,PNG)</small>
                                         <br>
                                         <small>(Recomendado) Aspecto cuadrado</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <h5><i class="fas fa-chalkboard-user"></i> Cuenta:</h5>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <h6>Nombre de usuario:</h6>
-                                        <input type="text" class="form-control" name="username" value="{{ $user->nomUsu }}">
-                                        @error('username')
+                                        </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="correo">Nombre de Usuario:</label>
+                                            <input type="text" class="form-control" name="login" value="{{ $user->login }}">
+                                            @error('username')
 										<div class="alert alert-danger border-0 py-0 bg-danger">
 											<div class="text-white">{{ $message }}</div>
 										</div>
                                         @enderror
-                                    </div>
-                                    <div class="col-md-4">
-                                        <h6>Nueva Contraseña:</h6>
-                                        <input type="password" class="form-control" name="password">
-                                        @error('password')
+                                        </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="correo">Nueva Contraseña:</label>
+                                            <input type="password" class="form-control" name="password">
+                                            @error('password')
 										<div class="alert alert-danger border-0 py-0 bg-danger">
 											<div class="text-white">{{ translatePassErrors("password",$message) }}</div>
 										</div>
                                         @enderror
-                                    </div>
-                                    <div class="col-md-4">
-                                        <h6>Repita la contraseña:</h6>
-                                        <input type="password" class="form-control" name="password_confirmation">
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-xl-6 mx-auto">
-                                        <h6>Contraseña del administrador:</h6>
-                                        <input type="password" class="form-control" name="passwordAdmin">
-                                        @error('passwordAdmin')
-										<div class="alert alert-danger border-0 py-0 bg-danger">
-											<div class="text-white">{{ $message }}</div>
-										</div>
-                                        @enderror
-                                        <small>El administrador (usted) debe colocar su contraseña actual para validar la operación</small>
-                                    </div>
+                                        </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="correo">Repita la Contraseña:</label>
+                                            <input type="password" class="form-control" name="password_confirmation">
+                                            
+                                        
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </form>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-md-12 text-center">
-                                    <button class="btn btn-primary" id="btnSave" type="button" data-bs-toggle="modal" data-bs-target="#modalUpdate">
-                                        <i class="fas fa-sync"></i> Actualizar datos
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                        </div>
+                       
+                </div><!-- Main Wrapper -->
+                
+            </div><!-- Page Inner -->
 <!-- Aqui termina todo el contenido de la pagina -->
 <div class="modal fade" id="modalUpdate" tabindex="-1" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -192,7 +184,8 @@
 @section('scripts')
 <script>
     @if(Session::has('success'))
-        $(document).ready(function(){
+        $(document).ready(function()
+        {
             $("#btnSuccess").click();
         });
     @endif
