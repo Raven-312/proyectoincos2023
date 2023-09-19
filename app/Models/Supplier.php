@@ -7,18 +7,21 @@ use Illuminate\Support\Facades\DB;
 
 class Supplier extends Model
 {
-    protected $table = 'suppliers';
+    protected $table = 'proveedores';
 
-    protected $fillable = [
+    public $timestamps = false;
+    protected $fillable = 
+    [
         'id',
         'ci',
-        'name',
-        'lastname',
-        'phone',
+        'nombre',
+        'apellido',
+        'telefono',
         'email',
-        'address',
-        'status',
-        'created_at',
-        'updated_at',
-        'user'];
+        'direccion',
+        'estado',
+        'fechaRegistro',
+        'fechaActualizacion',
+        'idUsuario'
+    ];
 }

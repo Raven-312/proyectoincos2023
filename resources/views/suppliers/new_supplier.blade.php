@@ -1,5 +1,4 @@
-@extends('general.main')
-
+@extends('layouts.main')
 @section('body')
 <!-- Aqui esta todo el contenido de la pagina -->
 <div class="page-wrapper">
